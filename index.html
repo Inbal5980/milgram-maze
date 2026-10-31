@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>המעבדה החשמלית · מבוך מילגרם</title>
+<meta name="theme-color" content="#0a0826">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/rubik-he.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="top">
+    <div class="brand">
+      <span class="bolt" aria-hidden="true">⚡</span>
+      <h1><span id="t-title">המעבדה החשמלית</span> <small id="t-sub">מבוך מילגרם</small></h1>
+    </div>
+    <div class="gates" id="gates" aria-label="שערים שנפתחו"></div>
+    <button id="mute" class="icon" type="button" aria-label="השתקה">🔊</button>
+  </header>
+  <main class="stage">
+    <section class="mazewrap" id="mazewrap">
+      <canvas id="maze" aria-label="המבוך"></canvas>
+      <div id="prod" class="prod" aria-live="polite"></div>
+      <div id="toast" class="toast" aria-live="polite"></div>
+    </section>
+    <div class="meter" id="meter">
+      <div class="gauge-box"><svg id="gauge" viewBox="0 0 200 118" aria-hidden="true"></svg></div>
+      <div class="meter-info">
+        <div class="readout"><b id="volt">0</b><span>V</span></div>
+        <div class="leds" id="leds" aria-hidden="true"></div>
+        <div class="status" id="status"></div>
+        <div class="notes-chip" id="notes-chip" aria-live="polite">📁 תיקי מחקר <b>0/4</b></div>
+      </div>
+    </div>
+    <div class="dpad" id="dpad">
+      <button type="button" class="dir up" data-dir="N" aria-label="למעלה">▲</button>
+      <button type="button" class="dir left" data-dir="W" aria-label="שמאלה">◀</button>
+      <button type="button" class="dir right" data-dir="E" aria-label="ימינה">▶</button>
+      <button type="button" class="dir down" data-dir="S" aria-label="למטה">▼</button>
+    </div>
+  </main>
+</div>
+
+<div class="overlay" id="intro">
+  <div class="card intro-card">
+    <div class="lab-tag">YALE · LAB 1961</div>
+    <h2>⚡ <span id="i-title">המעבדה החשמלית</span></h2>
+    <div id="i-text" class="intro-text"></div>
+    <div class="howto">
+      <div><b>מחשב:</b> חיצים או WASD</div>
+      <div><b>טלפון:</b> החלקה, הקשה על משבצת או כפתורי החיצים</div>
+    </div>
+    <button id="start" class="btn big" type="button">התחילו את הניסוי ⚡</button>
+  </div>
+</div>
+
+<div class="overlay hidden" id="quiz" role="dialog" aria-modal="true" aria-labelledby="q-title">
+  <div class="card quiz-card" id="quizcard">
+    <div class="q-head"><span class="q-volt" id="q-volt">75V</span><h3 id="q-title">שער</h3></div>
+    <p class="q-text" id="q-text"></p>
+    <div class="opts" id="opts"></div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <button id="q-next" class="btn hidden" type="button">פתחו את השער ⚡</button>
+  </div>
+</div>
+
+<div class="overlay note-ov hidden" id="note" role="dialog" aria-modal="true" aria-labelledby="n-count">
+  <div class="card note-card">
+    <div class="n-head"><span class="n-ic" aria-hidden="true">📁</span><div><div class="n-count" id="n-count">תיק מחקר</div><div class="n-src" id="n-src"></div></div></div>
+    <div class="n-paper"><p class="n-text" id="n-text"></p><div class="src">מתוך הסיכום</div></div>
+    <button id="n-ok" class="btn n-ok" type="button">קראתי ✓</button>
+  </div>
+</div>
+
+<div class="overlay hidden" id="end">
+  <div class="card end-card">
+    <div class="end-volt">450<span>V</span></div>
+    <h2 id="e-title">הגעתם ל-450 וולט</h2>
+    <p class="e-note" id="e-note"></p>
+    <div class="code-label" id="e-label">הקוד לדלת הבאה</div>
+    <div class="code" id="e-code">65</div>
+    <p class="e-refl" id="e-refl"></p>
+    <button id="back" class="btn big" type="button">חזרו לחדר הבריחה</button>
+    <div class="e-hint hidden" id="e-hint"></div>
+    <button id="e-sum" class="btn ghost" type="button">📁 סיכום תיקי המחקר</button>
+    <ol class="e-notes hidden" id="e-notes"></ol>
+    <button id="again" class="link" type="button">שחקו שוב ↺</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
